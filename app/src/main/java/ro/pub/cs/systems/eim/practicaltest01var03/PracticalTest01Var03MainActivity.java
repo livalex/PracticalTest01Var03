@@ -35,6 +35,12 @@ public class PracticalTest01Var03MainActivity extends AppCompatActivity {
                     String resString = firstEditText.getText().toString() + " + " +
                             secondEditText.getText().toString() + " = " + add;
                     textView.setText(resString);
+
+                    Intent intent = new Intent(getApplicationContext(),
+                            PracticalTest01Var03Service.class);
+                    intent.putExtra(Constants.FIRST_NUMBER, firstEditText.getText().toString());
+                    intent.putExtra(Constants.SECOND_NUMBER, secondEditText.getText().toString());
+                    getApplicationContext().startService(intent);
                 }
             } else if (view.getId() == R.id.minus_button) {
                 if (firstEditText.getText().toString().matches("")
@@ -48,6 +54,12 @@ public class PracticalTest01Var03MainActivity extends AppCompatActivity {
                     String resString = firstEditText.getText().toString() + " - " +
                             secondEditText.getText().toString() + " = " + sub;
                     textView.setText(resString);
+
+                    Intent intent = new Intent(getApplicationContext(),
+                            PracticalTest01Var03Service.class);
+                    intent.putExtra(Constants.FIRST_NUMBER, firstEditText.getText().toString());
+                    intent.putExtra(Constants.SECOND_NUMBER, secondEditText.getText().toString());
+                    getApplicationContext().startService(intent);
                 }
             } else if (view.getId() == R.id.navigate_button) {
                 Intent intent = new Intent(getApplicationContext(), PracticalTest01var03SecondaryActivity.class);
@@ -121,5 +133,12 @@ public class PracticalTest01Var03MainActivity extends AppCompatActivity {
             Toast.makeText(this, "The secondary acitvity returned the result" +
                     " " + resultCode, Toast.LENGTH_LONG).show();
         }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Intent intent = new Intent(this, PracticalTest01Var03Service.class);
+        stopService(intent);
     }
 }
