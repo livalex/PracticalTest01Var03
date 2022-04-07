@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class PracticalTest01Var03MainActivity extends AppCompatActivity {
 
@@ -20,7 +21,33 @@ public class PracticalTest01Var03MainActivity extends AppCompatActivity {
     private class ButtonClickListener implements View.OnClickListener {
         @Override
         public void onClick(View view) {
-
+            if (view.getId() == R.id.plus_button) {
+                if (firstEditText.getText().toString().matches("")
+                        || secondEditText.getText().toString().matches("")) {
+                    Toast.makeText(getApplicationContext(), "Complete all fields",
+                            Toast.LENGTH_LONG).show();
+                } else {
+                    int nr1 = Integer.parseInt(firstEditText.getText().toString());
+                    int nr2 = Integer.parseInt(secondEditText.getText().toString());
+                    int add = nr1 + nr2;
+                    String resString = firstEditText.getText().toString() + " + " +
+                            secondEditText.getText().toString() + " = " + add;
+                    textView.setText(resString);
+                }
+            } else if (view.getId() == R.id.minus_button) {
+                if (firstEditText.getText().toString().matches("")
+                        || secondEditText.getText().toString().matches("")) {
+                    Toast.makeText(getApplicationContext(), "Complete all fields",
+                            Toast.LENGTH_LONG).show();
+                } else {
+                    int nr1 = Integer.parseInt(firstEditText.getText().toString());
+                    int nr2 = Integer.parseInt(secondEditText.getText().toString());
+                    int sub = nr1 - nr2;
+                    String resString = firstEditText.getText().toString() + " - " +
+                            secondEditText.getText().toString() + " = " + sub;
+                    textView.setText(resString);
+                }
+            }
         }
     }
 
