@@ -2,6 +2,7 @@ package ro.pub.cs.systems.eim.practicaltest01var03;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -16,6 +17,7 @@ public class PracticalTest01Var03MainActivity extends AppCompatActivity {
     private Button plusButton;
     private Button minusButton;
     private TextView textView;
+    private Button navigate;
 
     private ButtonClickListener buttonClickListener = new ButtonClickListener();
     private class ButtonClickListener implements View.OnClickListener {
@@ -47,6 +49,10 @@ public class PracticalTest01Var03MainActivity extends AppCompatActivity {
                             secondEditText.getText().toString() + " = " + sub;
                     textView.setText(resString);
                 }
+            } else if (view.getId() == R.id.navigate_button) {
+                Intent intent = new Intent(getApplicationContext(), PracticalTest01var03SecondaryActivity.class);
+                intent.putExtra(Constants.CALCULUS, textView.getText().toString());
+                startActivityForResult(intent, Constants.SECONDARY_ACTIVITY_REQUEST_CODE);
             }
         }
     }
@@ -61,12 +67,14 @@ public class PracticalTest01Var03MainActivity extends AppCompatActivity {
         firstEditText = (EditText) findViewById(R.id.first_editText);
         secondEditText = (EditText) findViewById(R.id.second_editText);
         textView = (TextView) findViewById(R.id.textView);
+        navigate = (Button) findViewById(R.id.navigate_button);
 
         firstEditText.setText(String.valueOf(1));
         secondEditText.setText(String.valueOf(1));
 
         plusButton.setOnClickListener(buttonClickListener);
         minusButton.setOnClickListener(buttonClickListener);
+        navigate.setOnClickListener(buttonClickListener);
     }
 
     @Override
@@ -96,6 +104,22 @@ public class PracticalTest01Var03MainActivity extends AppCompatActivity {
             textView.setText(savedInstanceState.getString(Constants.RESULT));
         } else {
             textView.setText("");
+        }
+
+        Toast.makeText(getApplicationContext(), "FirstEditText: "
+                + firstEditText.getText().toString()
+                + "SecondEditText: "
+                + secondEditText.getText().toString()
+                + "TextView: "
+                + textView.getText().toString(), Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        super.onActivityResult(requestCode, resultCode, intent);
+        if (requestCode == Constants.SECONDARY_ACTIVITY_REQUEST_CODE) {
+            Toast.makeText(this, "The secondary acitvity returned the result" +
+                    " " + resultCode, Toast.LENGTH_LONG).show();
         }
     }
 }

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PracticalTest01var03SecondaryActivity">
+
+    <TextView
+        android:id="@+id/textView_secondActiv"
+        android:layout_width="57dp"
+        android:layout_height="15dp"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="370dp"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/correct_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Correct"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="425dp"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/incorrect_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="254dp"
+        android:text="Incorrect"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/correct_button"
+        tools:layout_editor_absoluteY="425dp"
+        tools:ignore="MissingConstraints" />
+</androidx.constraintlayout.widget.ConstraintLayout>
