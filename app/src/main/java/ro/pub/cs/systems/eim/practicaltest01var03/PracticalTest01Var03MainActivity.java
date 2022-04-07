@@ -68,4 +68,34 @@ public class PracticalTest01Var03MainActivity extends AppCompatActivity {
         plusButton.setOnClickListener(buttonClickListener);
         minusButton.setOnClickListener(buttonClickListener);
     }
+
+    @Override
+    protected void onSaveInstanceState(Bundle savedInstanceState) {
+        super.onSaveInstanceState(savedInstanceState);
+        savedInstanceState.putString(Constants.FIRST_EDITTEXT, firstEditText.getText().toString());
+        savedInstanceState.putString(Constants.SECOND_EDITTEXT, secondEditText.getText().toString());
+        savedInstanceState.putString(Constants.RESULT, textView.getText().toString());
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        if (savedInstanceState.containsKey(Constants.FIRST_EDITTEXT)) {
+            firstEditText.setText(savedInstanceState.getString(Constants.FIRST_EDITTEXT));
+        } else {
+            firstEditText.setText(String.valueOf(1));
+        }
+
+        if (savedInstanceState.containsKey(Constants.SECOND_EDITTEXT)) {
+            secondEditText.setText(savedInstanceState.getString(Constants.SECOND_EDITTEXT));
+        } else {
+            secondEditText.setText(String.valueOf(1));
+        }
+
+        if (savedInstanceState.containsKey(Constants.RESULT)) {
+            textView.setText(savedInstanceState.getString(Constants.RESULT));
+        } else {
+            textView.setText("");
+        }
+    }
 }
